@@ -1,0 +1,6 @@
+#This tool is used to Inject DLLs.
+
+#First, use the randomDLL file, and compile it as a DLL. Then store it on the computer. Once you have done that, then use the DLL injection code, and replace the path to the random dll with your file path. 
+# After you've compiled the DLL injector as an executable, then go into the powershell, or the developer powershell (if youa are using Visual Studio. 
+# Then, execute this command in powershell: .\DLLINJECT.exe (Get-Process | ? {$_.ProcessName -eq "mspaint"} | Select-Object -ExpandProperty Id)
+# When you run this command, make sure you are in the same path as your DLL Injector tool. Additionally, make sure a process is open, preferrably 'paint'.
