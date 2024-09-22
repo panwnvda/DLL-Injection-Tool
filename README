@@ -1,6 +1,83 @@
 #This tool is used to Inject DLLs.
 
-#First, use the randomDLL file, and compile it as a DLL. Then store it on the computer. Once you have done that, then use the DLL injection code, and replace the path to the random dll with your file path. 
-# After you've compiled the DLL injector as an executable, then go into the powershell, or the developer powershell (if you are using Visual Studio. 
-# Then, execute this command in powershell: .\DLLINJECT.exe (Get-Process | ? {$_.ProcessName -eq "mspaint"} | Select-Object -ExpandProperty Id)
-# When you run this command, make sure you are in the same path as your DLL Injector tool. Additionally, make sure a process is open, preferrably 'paint'.
+Step-by-Step Guide for Compiling the DLL using Visual Studio
+
+Step 1: Install Visual Studio
+Download Visual Studio:
+
+Go to Visual Studio's official website.
+Download the Visual Studio Community edition (or any other edition you prefer).
+Install Visual Studio:
+
+During the installation, make sure to select the Desktop development with C++ workload.
+This will ensure that the necessary tools for compiling C++ projects are installed.
+
+Step 2: Create a New DLL Project in Visual Studio
+Launch Visual Studio:
+
+Open Visual Studio after installation.
+Create a New Project:
+
+Go to File > New > Project.
+In the Create a new project dialog:
+Type "DLL" in the search bar.
+Select Dynamic-Link Library (DLL) under the C++ project types.
+Click Next.
+Configure the Project:
+
+Give your project a name (e.g., ExampleDLL).
+Choose a location to save your project.
+Ensure that the Dynamic-Link Library (DLL) template is selected.
+Click Create.
+
+Step 3: Write the DLL Code
+Replace the Default Code:
+
+Step-by-Step Guide for Building, Compiling, and Injecting a DLL with a Custom DLL Injector
+Continued from the Previous Section
+Now that you have successfully compiled the DLL (example.dll) using Visual Studio or MinGW, it’s time to inject the DLL into a running process using your custom DLL Injector.
+
+Step 4: Using PowerShell to Inject the DLL
+We will now use a command in PowerShell to run the DLL injector and inject example.dll into the target process, which in this case is Microsoft Paint (mspaint.exe).
+
+Step 4.1: Prepare Your Project in Visual Studio
+Open Your Project:
+Open Visual Studio and load the project you created earlier for the DLL.
+In the Solution Explorer, navigate to the file containing your DLL code (likely example_dll.cpp).
+Ensure Your DLL is Ready:
+Ensure that the DLL has been successfully built and is located in the correct output directory (e.g., x64\Release\example.dll or Debug if in debug mode).
+Step 4.2: Open a PowerShell Window
+Launch PowerShell:
+
+Open PowerShell by searching for it in the Windows Start Menu or by pressing Win + X and selecting Windows PowerShell.
+Navigate to the DLL Injector Path:
+
+Ensure that your DLL Injector executable (e.g., DLLINJECT.exe) and the compiled DLL (example.dll) are in the same directory.
+
+In PowerShell, navigate to this directory by using the cd (Change Directory) command. For example:
+cd C:\Path\To\Your\DLLInjector
+
+Step 4.3: Run the DLL Injector
+Open the Target Process (Microsoft Paint):
+
+Before injecting the DLL, ensure that the target process is running.
+For this example, open Microsoft Paint by typing mspaint in the Start menu or pressing Win + R and typing mspaint to open the application.
+Execute the Injection Command:
+
+In PowerShell, execute the following command to inject your DLL into the Microsoft Paint process:
+.\DLLINJECT.exe (Get-Process | ? {$_.ProcessName -eq "mspaint"} | Select-Object -ExpandProperty Id)
+
+This command does the following:
+
+DLLINJECT.exe: This is your custom DLL injector tool.
+(Get-Process | ? {$_.ProcessName -eq "mspaint"} | Select-Object -ExpandProperty Id): This PowerShell pipeline retrieves the process ID (PID) of Microsoft Paint by filtering the processes by name (mspaint) and extracting the process ID.
+
+Step 4.4: Verify the Injection
+Observe the Message Box:
+After running the command, if the DLL is successfully injected, you should see the message box from the DllMain function in example.dll pop up. The message box will display "KAW KAW KAW" with the title "WHO GOES THERE."
+Troubleshooting:
+If you don’t see the message box:
+Ensure that Microsoft Paint is open and running.
+Double-check that you are in the correct directory with both the DLL Injector and the DLL files.
+Check for any error messages in PowerShell or the injector and resolve them as needed.
+
